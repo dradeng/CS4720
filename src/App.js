@@ -9,12 +9,13 @@ class App extends Component {
 
   componentWillMount() {
     firebase.initializeApp({
-      apiKey: 'AIzaSyBtxMY4K6uHxv_2e3GD-FWAD2ACX6lPVRE',
-      authDomain: 'authentication-70a18.firebaseapp.com',
-      databaseURL: 'https://authentication-70a18.firebaseio.com',
-      storageBucket: 'authentication-70a18.appspot.com',
-      messagingSenderId: '682333809338'
-    });
+      apiKey: "AIzaSyBYPgdtmFXywT4hrQ1sz05EC6h4BgtdwQ8",
+      authDomain: "cs4720-f3882.firebaseapp.com",
+      databaseURL: "https://cs4720-f3882.firebaseio.com",
+      projectId: "cs4720-f3882",
+      storageBucket: "cs4720-f3882.appspot.com",
+      messagingSenderId: "508595634959"
+  });
 
     firebase.auth().onAuthStateChanged((user) => {
       if (user) {
@@ -42,7 +43,7 @@ class App extends Component {
 
   render() {
     return (
-      <View>
+      <View style={{height: '100%', backgroundColor: '#fff'}}>
         <Header headerText="Authentication" />
         {this.renderContent()}
       </View>
