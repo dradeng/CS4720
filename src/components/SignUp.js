@@ -3,6 +3,7 @@ import React from 'react'
 import { StyleSheet, Text, TextInput, View } from 'react-native'
 import { Actions } from 'react-native-router-flux';
 import { Button, Card, CardSection, Input, Spinner } from './common';
+import firebase from 'firebase';
 
 export default class SignUp extends React.Component {
   state = {
@@ -11,9 +12,12 @@ export default class SignUp extends React.Component {
     errorMessage: null
   }
 handleSignUp = () => {
-  // TODO: Firebase stuff...
-  console.log('handleSignUp')
-}
+  firebase
+      .auth()
+      .createUserWithEmailAndPassword(this.state.email, this.state.password)
+      .then(() => Actions.home())
+      .catch(error => this.setState({ errorMessage: error.message }));
+  }
 render() {
     return (
       <Card>
