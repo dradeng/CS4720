@@ -12,6 +12,8 @@ Run: 'react-native run-android' for Android
 
 
 # Points so far
-Total: 5
+Total: 30
 
 4.2 (5)
+
+4.3 (25)
