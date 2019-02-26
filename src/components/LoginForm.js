@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Text } from 'react-native';
 import firebase from 'firebase';
+import { Actions } from 'react-native-router-flux';
 import { Button, Card, CardSection, Input, Spinner } from './common';
 
 class LoginForm extends Component {
@@ -13,6 +14,7 @@ class LoginForm extends Component {
 
     firebase.auth().signInWithEmailAndPassword(email, password)
       .then(this.onLoginSuccess.bind(this))
+      .then(Actions.splash())
       .catch(() => {
         firebase.auth().createUserWithEmailAndPassword(email, password)
           .then(this.onLoginSuccess.bind(this))
