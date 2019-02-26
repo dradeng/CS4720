@@ -17,26 +17,58 @@ class Splash extends Component {
     };
   }
   componentDidMount() {
-    Animated.timing(
-      this.state.fadeAmin1,
-      {
-        toValue: 0,
-        duration: 2000,
-      }
-    ).start()
-    Animated.timing(
-      this.state.fadeAmin2,
-      {
-        toValue: 0,
-        duration: 3000,
-      }
-    ).start()
-    Animated.timing(
-      this.state.fadeAmin3,
-      {
-        toValue: 0,
-        duration: 1500,
-      }
+    Animated.loop(
+      Animated.stagger(600, [
+        Animated.sequence([
+          Animated.timing(
+            this.state.fadeAmin1,
+            {
+              toValue: 0,
+              duration: 1000,
+            }
+          ),
+          Animated.timing(
+            this.state.fadeAmin1,
+            {
+              toValue: 1,
+              duration: 1000,
+            }
+          )
+        ]),
+        Animated.sequence([
+          Animated.timing(
+            this.state.fadeAmin2,
+            {
+              toValue: 0,
+              duration: 1000,
+            }
+          ),
+          Animated.timing(
+            this.state.fadeAmin2,
+            {
+              toValue: 1,
+              duration: 1000,
+            }
+          )
+        ]),
+        Animated.sequence([
+          Animated.timing(
+            this.state.fadeAmin3,
+            {
+              toValue: 0,
+              duration: 1000,
+            }
+          ),
+          Animated.timing(
+            this.state.fadeAmin3,
+            {
+              toValue: 1,
+              duration: 1000,
+            }
+          )
+        ])
+      ]),
+    {iterations: -1}
     ).start()
   }
 
