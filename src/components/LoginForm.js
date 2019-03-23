@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
-import { Text } from 'react-native';
+import { Text, View } from 'react-native';
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import { Button, Card, CardSection, Input, Spinner } from './common';
+import FBLoginButton from './FBLoginButton';
+
 
 class LoginForm extends Component {
   state = { email: '', password: '', error: '', loading: false };
@@ -41,9 +43,14 @@ class LoginForm extends Component {
     }
 
     return (
-      <Button onPress={this.onButtonPress.bind(this)}>
-        Log in
-      </Button>
+      <View>
+        <Button onPress={this.onButtonPress.bind(this)}>
+          Log in
+        </Button>
+
+        <FBLoginButton />
+
+      </View>
     );
   }
 

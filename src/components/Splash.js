@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TouchableHighlight, StyleSheet, Animated, Easing } from 'react-native';
+import { Text, View, Image, TouchableHighlight, Dimensions, StyleSheet, Animated, Easing } from 'react-native';
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import { Button, Card, CardSection, Input, Spinner } from './common';
@@ -21,7 +21,9 @@ class Splash extends Component {
       fadeAmin1: new Animated.Value(0),
       fadeAmin2: new Animated.Value(1),
       fadeAmin3: new Animated.Value(0),
-      stager: 600
+      stager: 600,
+      screenWidth: Dimensions.get("screen").width,
+      screenHeight: Dimensions.get("screen").height,
     };
   }
   componentDidMount() {
@@ -150,12 +152,16 @@ class Splash extends Component {
   highlight() {
     Actions.home();
   }
+  onLayout(e) {
+      this.setState({screenWidth: Dimensions.get("screen").width});
+      this.setState({screenHeight: Dimensions.get("screen").height});
+  }
   render() {
 
     let { fadeAmin1, fadeAmin2, fadeAmin3 } = this.state;
 
 
-    const top1 = this.imageTop1.interpolate({
+    /*const top1 = this.imageTop1.interpolate({
       inputRange: [0, 1],
       outputRange: [400, 500]
     });
@@ -179,6 +185,32 @@ class Splash extends Component {
     const left3 = this.imageLeft3.interpolate({
       inputRange: [0, 1],
       outputRange: [225, 300]
+    });*/
+
+    const top1 = this.imageTop1.interpolate({
+      inputRange: [0, 1],
+      outputRange: [this.state.screenHeight/3, this.state.screenHeight/2]
+    });
+    const left1 = this.imageLeft1.interpolate({
+      inputRange: [0, 1],
+      outputRange: [this.state.screenWidth/1.8, this.state.screenWidth/1.2]
+    });
+    const top2 = this.imageTop2.interpolate({
+      inputRange: [0, 1],
+      outputRange: [50, this.state.screenHeight/4]
+    });
+    const left2 = this.imageLeft2.interpolate({
+      inputRange: [0, 1],
+      outputRange: [50, this.state.screenWidth/4]
+    });
+
+    const top3 = this.imageTop3.interpolate({
+      inputRange: [0, 1],
+      outputRange: [50, this.state.screenHeight/3.9]
+    });
+    const left3 = this.imageLeft3.interpolate({
+      inputRange: [0, 1],
+      outputRange: [this.state.screenWidth/1.8, this.state.screenWidth/1.2]
     });
 
     return (
@@ -195,7 +227,7 @@ class Splash extends Component {
           style={{opacity: fadeAmin3, position: 'absolute', top: top3, left: left3 }}
           source={require('../assets/3.png')}
         />
-        <View style={{width: 258.11, height: 258.11, borderColor: 'rgba(57, 186, 255, .1)', borderWidth: 1, borderRadius: 124.055, justifyContent: 'center',alignItems: 'center'}}>
+        <View onLayout={this.onLayout.bind(this)} style={{width: 258.11, height: 258.11, borderColor: 'rgba(57, 186, 255, .1)', borderWidth: 1, borderRadius: 124.055, justifyContent: 'center',alignItems: 'center'}}>
           <View style={{width: 195.2, height: 195.2, backgroundColor: 'rgba(57, 186, 255, .05)', borderRadius: 97.6, justifyContent: 'center',alignItems: 'center', borderColor: 'rgba(26,199,255,.15)'}}>
             <View style={{width: 131.4, height: 131.4, backgroundColor: 'rgba(57, 186, 255, .1)', borderRadius: 65.7, justifyContent: 'center',alignItems: 'center'}}>
               <View style={{justifyContent: 'center',alignItems: 'center'}}>
