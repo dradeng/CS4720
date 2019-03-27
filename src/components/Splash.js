@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Text, View, Image, TouchableHighlight, StyleSheet, Animated, Easing } from 'react-native';
+import { Text, View, Image, TouchableHighlight, StyleSheet, Animated, Easing, Dimensions } from 'react-native';
 import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import { Button, Card, CardSection, Input, Spinner } from './common';
@@ -21,9 +21,16 @@ class Splash extends Component {
       fadeAmin1: new Animated.Value(0),
       fadeAmin2: new Animated.Value(1),
       fadeAmin3: new Animated.Value(0),
-      stager: 600
+      stager: 600,
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height,
     };
+
+    Dimensions.addEventListener("change", (e) => {
+      this.setState(e.window);
+    });
   }
+
   componentDidMount() {
     this.animate();
 
@@ -182,7 +189,7 @@ class Splash extends Component {
     });
 
     return (
-      <View style={{flex: 1, backgroundColor: '#fff', height: '100%', justifyContent: 'center',alignItems: 'center'}}>
+      <View onLayout={this.onLayout} style={{width:this.state.width, height: this.state.height, flex: 1, backgroundColor: '#fff', height: '100%', justifyContent: 'center',alignItems: 'center'}}>
         <Animated.Image
           style={{opacity: fadeAmin1, position: 'absolute', top: top1, left: left1 }}
           source={require('../assets/1.png')}
