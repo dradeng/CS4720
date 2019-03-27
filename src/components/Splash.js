@@ -150,7 +150,7 @@ class Splash extends Component {
     ]).start(() => this.animate())
 }
   highlight() {
-    Actions.home();
+    Actions.login();
   }
   onLayout(e) {
       this.setState({screenWidth: Dimensions.get("screen").width});
